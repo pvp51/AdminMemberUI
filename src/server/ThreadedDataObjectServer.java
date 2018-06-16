@@ -4,6 +4,8 @@ package server;
 import java.io.*;
 import java.net.*;
 
+import model.DataObject;
+
 public class ThreadedDataObjectServer
 {  public static void main(String[] args ) 
    {  
@@ -19,7 +21,7 @@ public class ThreadedDataObjectServer
 	   	 }   
       }
       catch (Exception e) 
-      {  System.out.println(e);
+      {  System.out.println("Error Found : "+e.getMessage());
       } 
    } 
 }
@@ -34,30 +36,23 @@ class ThreadedDataObjectHandler extends Thread
    {  try 
       { 	ObjectInputStream in =
 				new ObjectInputStream(incoming.getInputStream());
-
 			ObjectOutputStream out =
 				new ObjectOutputStream(incoming.getOutputStream());
 
             myObject = (DataObject)in.readObject();
-
 			System.out.println("Message read: " + myObject.getMessage());
-
             myObject.setMessage("Got it!");
 
 			System.out.println("Message written: " + myObject.getMessage());
-
 			out.writeObject(myObject);
 
-			in.close();
-			
+			in.close();			
 			out.close();
-
- 
          	incoming.close();    
 					    
       }
       catch (Exception e) 
-      {  System.out.println(e);
+      {  System.out.println("Error Found : "+e.getMessage());
       } 
    }
    

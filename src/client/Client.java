@@ -16,6 +16,7 @@ import model.DataObject;
 public class Client extends Application{
 	private Stage primaryStage;
 	private BorderPane rootLayout;
+
 	public static void main(String[] arg){
 		try{
 			DataObject myObject = new DataObject();
@@ -61,8 +62,8 @@ public class Client extends Application{
 
 			// Show the scene containing the root layout.
 			Scene scene = new Scene(rootLayout);
-			primaryStage.setScene(scene);
-			primaryStage.show();
+			this.primaryStage.setScene(scene);
+			this.primaryStage.show();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -86,6 +87,9 @@ public class Client extends Application{
 	 */
 	public Stage getPrimaryStage() {
 		return primaryStage;
+	}
+	public BorderPane getRootLayout() {
+		return rootLayout;
 	}
 
 

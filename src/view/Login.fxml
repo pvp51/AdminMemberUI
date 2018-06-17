@@ -5,16 +5,14 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
+<AnchorPane prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
    <children>
-      <TextField layoutX="139.0" layoutY="123.0" />
-      <TextField layoutX="139.0" layoutY="175.0" />
+      <TextField fx:id="userName" layoutX="139.0" layoutY="123.0" />
+      <TextField fx:id="password" layoutX="139.0" layoutY="175.0" />
       <Label layoutX="333.0" layoutY="127.0" text="User Name" />
       <Label layoutX="333.0" layoutY="179.0" text="Password" />
-      <Button layoutX="191.0" layoutY="307.0" mnemonicParsing="false" text="Login" />
-      <RadioButton layoutX="139.0" layoutY="221.0" mnemonicParsing="false" text="Admin" />
-      <RadioButton layoutX="245.0" layoutY="221.0" mnemonicParsing="false" text="Member" />
-      <ToggleButton layoutX="139.0" layoutY="261.0" mnemonicParsing="false" text="Admin" />
-      <ToggleButton layoutX="238.0" layoutY="261.0" mnemonicParsing="false" text="Member" />
+      <Button fx:id="loginButton" layoutX="191.0" layoutY="307.0" mnemonicParsing="false" onAction="#attemptLogin" text="Login" />
+      <RadioButton fx:id="member" layoutX="139.0" layoutY="241.0" mnemonicParsing="false" text="Member" />
+      <RadioButton fx:id="admin" layoutX="257.0" layoutY="241.0" mnemonicParsing="false" text="Admin" />
    </children>
 </AnchorPane>

@@ -11,6 +11,7 @@ import model.Record;
 public class DataAccessObject {
 	
 	private ArrayList<Record> records;
+	
 	public DataAccessObject(ArrayList<Record> records){
 		this.records = records;
 	}
@@ -38,6 +39,39 @@ public class DataAccessObject {
 			//this.records.get(0).setMessage("failed");
 			this.records = new ArrayList<>();
 		}
+
+		ps.close();
+		rs.close();
+		DBUtil.dbDisconnect();
+		break; 
+	case "all" :
+		this.records = new ArrayList<>();
+		ps=conn.prepareStatement("SELECT * From records");
+		
+		rs = ps.executeQuery();
+		Record record;
+		while(rs.next()) {
+			record = new Record();
+        	record.setId(rs.getInt("id"));
+        	record.setFullName(rs.getString("fullName"));
+        	record.setEmail(rs.getString("email"));
+        	record.setGender(rs.getString("gender"));
+        	record.setPassword(rs.getString("password"));
+        	record.setUserName(rs.getString("username"));
+        	record.setType(rs.getString("type"));
+        	record.setPhoneNumber(rs.getString("phoneNumber"));
+            this.records.add(record);
+        }
+//		if(rs.next()) {
+//			this.records.get(0).setId(rs.getInt("id"));
+//			this.records.get(0).setType(rs.getString("fullName"));
+//			this.records.get(0).setMessage("success");
+//		}
+//		else {
+//			System.out.println("Not Exists in DB");
+//			//this.records.get(0).setMessage("failed");
+//			this.records = new ArrayList<>();
+//		}
 
 		ps.close();
 		rs.close();

@@ -3,8 +3,11 @@ package server;
 
 import java.io.*;
 import java.net.*;
+import java.util.ArrayList;
 
 import model.DataObject;
+import model.Record;
+import util.DataAccessObject;
 
 public class ThreadedDataObjectServer
 {  public static void main(String[] args ) 
@@ -27,7 +30,9 @@ public class ThreadedDataObjectServer
 }
 
 class ThreadedDataObjectHandler extends Thread
-{  public ThreadedDataObjectHandler(Socket i) 
+{  
+	ArrayList<Record> records = null;
+	public ThreadedDataObjectHandler(Socket i) 
    { 
    		incoming = i;
    }
@@ -39,12 +44,16 @@ class ThreadedDataObjectHandler extends Thread
 			ObjectOutputStream out =
 				new ObjectOutputStream(incoming.getOutputStream());
 
-            myObject = (DataObject)in.readObject();
-			System.out.println("Message read: " + myObject.getMessage());
-            myObject.setMessage("Got it!");
+			records = (ArrayList<Record>) in.readObject();
+			System.out.println("Message read: " + records.size());
+           // myObject.setMessage("Got it!");
+			
+			DataAccessObject doa = new DataAccessObject(records);
+			records = new ArrayList<>();
+			records = doa.buildQuery();	
 
-			System.out.println("Message written: " + myObject.getMessage());
-			out.writeObject(myObject);
+			System.out.println("Message written: " + records.size());
+			out.writeObject(records);
 
 			in.close();			
 			out.close();

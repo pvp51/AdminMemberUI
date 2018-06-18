@@ -11,10 +11,10 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <TableView layoutY="14.0" prefHeight="298.0" prefWidth="187.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-12.0" AnchorPane.topAnchor="0.0">
+                  <TableView fx:id="recordTable" layoutY="14.0" prefHeight="298.0" prefWidth="187.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-12.0" AnchorPane.topAnchor="0.0">
                     <columns>
-                      <TableColumn prefWidth="40.0" text="ID" />
-                      <TableColumn prefWidth="145.0" text="Full Name" />
+                      <TableColumn fx:id="idColumn" prefWidth="40.0" text="ID" />
+                      <TableColumn fx:id="fullNameColumn" prefWidth="145.0" text="Full Name" />
                     </columns>
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -39,7 +39,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <TextField GridPane.columnIndex="1" />
+                        <TextField fx:id="userName" GridPane.columnIndex="1" />
                         <Label text="User Name" />
                         <Label text="Password" GridPane.rowIndex="1" />
                         <Label text="Full Name" GridPane.rowIndex="2" />
@@ -47,18 +47,19 @@
                         <Label text="Phone Number" GridPane.rowIndex="4" />
                         <Label text="Gender" GridPane.rowIndex="5" />
                         <Label text="Type" GridPane.rowIndex="6" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <TextField fx:id="password" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="fullName" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="email" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <TextField fx:id="phoneNumber" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <TextField fx:id="gender" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <TextField fx:id="type" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                      </children>
                   </GridPane>
                   <Label layoutX="60.0" layoutY="21.0" text="Overview" />
                   <Button layoutX="49.0" layoutY="331.0" mnemonicParsing="false" text="New" />
-                  <Button layoutX="157.0" layoutY="331.0" mnemonicParsing="false" text="Edit" />
-                  <Button layoutX="264.0" layoutY="331.0" mnemonicParsing="false" text="Remove" />
+                  <Button layoutX="134.0" layoutY="331.0" mnemonicParsing="false" text="Edit" />
+                  <Button layoutX="214.0" layoutY="331.0" mnemonicParsing="false" text="Remove" />
+                  <Button layoutX="316.0" layoutY="331.0" mnemonicParsing="false" text="Clear" />
                </children>
             </AnchorPane>
         </items>

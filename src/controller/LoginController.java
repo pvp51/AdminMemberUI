@@ -54,7 +54,10 @@ public class LoginController implements Initializable{
 
 		if(checkCredentials()){
 			initRootLayout();
-			showMemberScene();
+			if("Member".equalsIgnoreCase(group.getSelectedToggle().getUserData().toString())) 
+				showMemberScene();
+			else
+				showAdminScene();		
 		}
 		else{
 			Alert alert = new Alert(AlertType.ERROR);
@@ -71,10 +74,13 @@ public class LoginController implements Initializable{
 		record.setPassword(password.getText());
 		records = new ArrayList<>();
 		records.add(record);
+		
+		Client client = new Client();
+		records = client.startClient(records);
 
-		DataAccessObject doa = new DataAccessObject(records);
-		records = new ArrayList<>();
-		records = doa.buildQuery();	
+//		DataAccessObject doa = new DataAccessObject(records);
+//		records = new ArrayList<>();
+//		records = doa.buildQuery();	
 
 		return records == null || records.size() == 0 || !records.get(0).getType().equalsIgnoreCase(group.getSelectedToggle().getUserData().toString())? false : true;
 	}
@@ -100,6 +106,19 @@ public class LoginController implements Initializable{
 		try {
 			// Load the fxml file and set into the center of the main layout
 			FXMLLoader loader = new FXMLLoader(Client.class.getResource("/view/Member.fxml"));
+			AnchorPane overviewPage = (AnchorPane) loader.load();
+			rootLayout.setCenter(overviewPage);
+
+		} catch (IOException e) {
+			// Exception gets thrown if the fxml file could not be loaded
+			e.printStackTrace();
+		}
+	}
+	
+	private void showAdminScene() {
+		try {
+			// Load the fxml file and set into the center of the main layout
+			FXMLLoader loader = new FXMLLoader(Client.class.getResource("/view/Admin.fxml"));
 			AnchorPane overviewPage = (AnchorPane) loader.load();
 			rootLayout.setCenter(overviewPage);
 

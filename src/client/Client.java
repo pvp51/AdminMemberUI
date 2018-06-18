@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -12,36 +13,60 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import model.DataObject;
+import model.Record;
 
 public class Client extends Application{
 	private Stage primaryStage;
 	private BorderPane rootLayout;
 
 	public static void main(String[] arg){
-		try{
-			DataObject myObject = new DataObject();
-			myObject.setMessage("Did you get this?");
-			System.out.println("Message sent : " + myObject.getMessage());
-			Socket socketToServer = new Socket("127.0.0.1", 3000);
-
-			ObjectOutputStream myOutputStream =
-					new ObjectOutputStream(socketToServer.getOutputStream());
-			ObjectInputStream myInputStream =
-					new ObjectInputStream(socketToServer.getInputStream());
-
-			myOutputStream.writeObject(myObject);
-			myObject = (DataObject) myInputStream.readObject();
-			System.out.println("Messaged received : " + myObject.getMessage());
+//		try{
+//			DataObject myObject = new DataObject();
+//			myObject.setMessage("Did you get this?");
+//			System.out.println("Message sent : " + myObject.getMessage());
+//			Socket socketToServer = new Socket("127.0.0.1", 3000);
+//
+//			ObjectOutputStream myOutputStream =
+//					new ObjectOutputStream(socketToServer.getOutputStream());
+//			ObjectInputStream myInputStream =
+//					new ObjectInputStream(socketToServer.getInputStream());
+//
+//			myOutputStream.writeObject(myObject);
+//			myObject = (DataObject) myInputStream.readObject();
+//			System.out.println("Messaged received : " + myObject.getMessage());
 
 			launch(arg);
 
-			myOutputStream.close();
-			myInputStream.close();
+//			myOutputStream.close();
+//			myInputStream.close();
+//			socketToServer.close();
+//		}
+//		catch(Exception e){
+//			System.out.println("Error Found : "+e.getMessage());
+//		}
+	}
+	
+	public ArrayList<Record> startClient(ArrayList<Record> records) {
+		Socket socketToServer = null;
+		ObjectOutputStream outToServer = null;
+		ObjectInputStream inFromServer = null;
+
+		try {
+			socketToServer = new Socket("127.0.0.1", 3000); 
+			//socketToServer = new Socket("afsconnect1.njit.edu", 3000);
+			outToServer = new ObjectOutputStream(socketToServer.getOutputStream());
+			inFromServer = new ObjectInputStream(socketToServer.getInputStream()); 
+			outToServer.writeObject(records);
+			records = (ArrayList<Record>) inFromServer.readObject();
+			outToServer.close(); 
+			inFromServer.close(); 
 			socketToServer.close();
+		} catch (ClassNotFoundException | IOException e) {
+			
+			System.out.println("Server Connection is closed now. Thank you :)" );
 		}
-		catch(Exception e){
-			System.out.println("Error Found : "+e.getMessage());
-		}
+
+		return records;
 	}
 
 	@Override

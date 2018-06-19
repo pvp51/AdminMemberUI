@@ -46,6 +46,8 @@ public class AdminController implements Initializable{
 	private TextField type= new TextField();
 	@FXML
 	private Button deleteButton;
+	@FXML
+	private Button clearButton;
 
 	private ArrayList<Record> records;
 	
@@ -87,6 +89,19 @@ public class AdminController implements Initializable{
 		//Refreshing table values
 		loadAllRecords();
 	}
+	
+	@FXML
+	private void clearFields(ActionEvent event) throws SQLException{
+		recordTable.getSelectionModel().clearSelection();
+		userName.setText("");
+		password.setText("");
+		fullName.setText("");
+		email.setText("");
+		phoneNumber.setText("");
+		gender.setText("");
+		type.setText("");
+	}
+	
 	private void showRecords(Record newValue) {
 		if(newValue!= null){
 			userName.setText(newValue.getUserName());

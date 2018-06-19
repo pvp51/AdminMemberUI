@@ -59,7 +59,7 @@
                   <Button layoutX="49.0" layoutY="331.0" mnemonicParsing="false" text="New" />
                   <Button layoutX="134.0" layoutY="331.0" mnemonicParsing="false" text="Edit" />
                   <Button fx:id="deleteButton" layoutX="214.0" layoutY="331.0" mnemonicParsing="false" onAction="#deleteRecord" text="Remove" />
-                  <Button layoutX="316.0" layoutY="331.0" mnemonicParsing="false" text="Clear" />
+                  <Button fx:id="clearButton" layoutX="316.0" layoutY="331.0" mnemonicParsing="false" onAction="#clearFields" text="Clear" />
                </children>
             </AnchorPane>
         </items>

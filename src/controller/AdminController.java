@@ -5,12 +5,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import client.Client;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -41,6 +44,8 @@ public class AdminController implements Initializable{
 	private TextField gender= new TextField();
 	@FXML
 	private TextField type= new TextField();
+	@FXML
+	private Button deleteButton;
 
 	private ArrayList<Record> records;
 	
@@ -57,20 +62,8 @@ public class AdminController implements Initializable{
 		idColumn.setCellValueFactory(new PropertyValueFactory<Record, String>("id"));
 		fullNameColumn.setCellValueFactory(new PropertyValueFactory<Record, String>("fullName"));
 		
-		Record record = new Record();
-		record.setMessage("all");
-		records = new ArrayList<>();
-		records.add(record);
-		doa = new DataAccessObject(records);
-		records = new ArrayList<>();
-		try {
-			records = doa.buildQuery();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-		//recordTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-		recordTable.setItems(FXCollections.observableArrayList(records));
+		loadAllRecords();
+		
 		recordTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Record>() {
 
 		    @Override
@@ -78,18 +71,52 @@ public class AdminController implements Initializable{
 		    		Record oldValue, Record newValue) {
 		      showRecords(newValue);
 		    }
-		    private void showRecords(Record newValue) {
-				userName.setText(newValue.getUserName());
-				password.setText(newValue.getPassword());
-				fullName.setText(newValue.getFullName());
-				email.setText(newValue.getEmail());
-				phoneNumber.setText(newValue.getPhoneNumber());
-				gender.setText(newValue.getGender());
-				type.setText(newValue.getType());	
-			}
-
 			
 		  });
+	}
+
+
+	@FXML
+	private void deleteRecord(ActionEvent event) throws SQLException{
+		Record record = recordTable.getSelectionModel().getSelectedItem();
+		record.setMessage("delete");
+		records = new ArrayList<>();
+		records.add(record);
+		Client client = new Client();
+		client.startClient(records);
+		//Refreshing table values
+		loadAllRecords();
+	}
+	private void showRecords(Record newValue) {
+		if(newValue!= null){
+			userName.setText(newValue.getUserName());
+			password.setText(newValue.getPassword());
+			fullName.setText(newValue.getFullName());
+			email.setText(newValue.getEmail());
+			phoneNumber.setText(newValue.getPhoneNumber());
+			gender.setText(newValue.getGender());
+			type.setText(newValue.getType());
+		}
+		else{
+			userName.setText("");
+			password.setText("");
+			fullName.setText("");
+			email.setText("");
+			phoneNumber.setText("");
+			gender.setText("");
+			type.setText("");
+		}
+	}
+	
+	private void loadAllRecords() {
+		Record record = new Record();
+		record.setMessage("all");
+		records = new ArrayList<>();
+		records.add(record);
+		Client client = new Client();
+		records = client.startClient(records);
+		
+		recordTable.setItems(FXCollections.observableArrayList(records));
 	}
 	
 	

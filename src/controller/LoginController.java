@@ -67,6 +67,7 @@ public class LoginController implements Initializable{
 	    	alert.show();
 		}
 	}
+	
 	private boolean checkCredentials() throws SQLException {
 		Record record = new Record();
 		record.setMessage("login");
@@ -77,11 +78,7 @@ public class LoginController implements Initializable{
 		
 		Client client = new Client();
 		records = client.startClient(records);
-
-//		DataAccessObject doa = new DataAccessObject(records);
-//		records = new ArrayList<>();
-//		records = doa.buildQuery();	
-
+	
 		return records == null || records.size() == 0 || !records.get(0).getType().equalsIgnoreCase(group.getSelectedToggle().getUserData().toString())? false : true;
 	}
 

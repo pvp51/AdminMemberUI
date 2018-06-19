@@ -58,7 +58,7 @@
                   <Label layoutX="60.0" layoutY="21.0" text="Overview" />
                   <Button layoutX="49.0" layoutY="331.0" mnemonicParsing="false" text="New" />
                   <Button layoutX="134.0" layoutY="331.0" mnemonicParsing="false" text="Edit" />
-                  <Button layoutX="214.0" layoutY="331.0" mnemonicParsing="false" text="Remove" />
+                  <Button fx:id="deleteButton" layoutX="214.0" layoutY="331.0" mnemonicParsing="false" onAction="#deleteRecord" text="Remove" />
                   <Button layoutX="316.0" layoutY="331.0" mnemonicParsing="false" text="Clear" />
                </children>
             </AnchorPane>

@@ -56,8 +56,8 @@
                      </children>
                   </GridPane>
                   <Label layoutX="60.0" layoutY="21.0" text="Overview" />
-                  <Button layoutX="49.0" layoutY="331.0" mnemonicParsing="false" text="New" />
-                  <Button layoutX="134.0" layoutY="331.0" mnemonicParsing="false" text="Edit" />
+                  <Button fx:id="newButton" layoutX="49.0" layoutY="331.0" mnemonicParsing="false" onAction="#newRecord" text="New" />
+                  <Button fx:id="editButton" layoutX="134.0" layoutY="331.0" mnemonicParsing="false" onAction="#editRecord" text="Edit" />
                   <Button fx:id="deleteButton" layoutX="214.0" layoutY="331.0" mnemonicParsing="false" onAction="#deleteRecord" text="Remove" />
                   <Button fx:id="clearButton" layoutX="316.0" layoutY="331.0" mnemonicParsing="false" onAction="#clearFields" text="Clear" />
                </children>

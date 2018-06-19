@@ -16,6 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
@@ -23,14 +24,13 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import model.Record;
-import util.DataAccessObject;
 
 public class LoginController implements Initializable{
 
 	@FXML
 	private TextField userName;
 	@FXML
-	private TextField password;
+	private PasswordField password;
 
 	@FXML
 	private RadioButton member;
@@ -54,20 +54,22 @@ public class LoginController implements Initializable{
 
 		if(checkCredentials()){
 			initRootLayout();
-			if("Member".equalsIgnoreCase(group.getSelectedToggle().getUserData().toString())) 
+			if("Member".equalsIgnoreCase(group.getSelectedToggle().getUserData().toString())) {
 				showMemberScene();
-			else
-				showAdminScene();		
+			}
+			else{
+				showAdminScene();
+			}
 		}
 		else{
 			Alert alert = new Alert(AlertType.ERROR);
-	    	alert.setContentText("Incorrect username and password or selection");
-	    	alert.setTitle("Oops");
-	    	alert.setHeaderText("Something Wrong :)");
-	    	alert.show();
+			alert.setContentText("Incorrect username/password or selection");
+			alert.setTitle("Oops");
+			alert.setHeaderText("Something Wrong :)");
+			alert.show();
 		}
 	}
-	
+
 	private boolean checkCredentials() throws SQLException {
 		Record record = new Record();
 		record.setMessage("login");
@@ -75,10 +77,10 @@ public class LoginController implements Initializable{
 		record.setPassword(password.getText());
 		records = new ArrayList<>();
 		records.add(record);
-		
+
 		Client client = new Client();
 		records = client.startClient(records);
-	
+
 		return records == null || records.size() == 0 || !records.get(0).getType().equalsIgnoreCase(group.getSelectedToggle().getUserData().toString())? false : true;
 	}
 
@@ -103,6 +105,9 @@ public class LoginController implements Initializable{
 		try {
 			// Load the fxml file and set into the center of the main layout
 			FXMLLoader loader = new FXMLLoader(Client.class.getResource("/view/Member.fxml"));
+			
+			MemberController.currentRecords =  records;
+			
 			AnchorPane overviewPage = (AnchorPane) loader.load();
 			rootLayout.setCenter(overviewPage);
 
@@ -111,7 +116,7 @@ public class LoginController implements Initializable{
 			e.printStackTrace();
 		}
 	}
-	
+
 	private void showAdminScene() {
 		try {
 			// Load the fxml file and set into the center of the main layout
@@ -127,7 +132,7 @@ public class LoginController implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		group = new ToggleGroup();
-		
+
 		member.setToggleGroup(group);
 		member.setSelected(true);
 		member.setUserData("Member");

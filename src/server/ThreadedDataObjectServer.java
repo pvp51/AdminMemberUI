@@ -40,6 +40,7 @@ class ThreadedDataObjectHandler extends Thread
 		incoming = i;
 	}
 
+	@SuppressWarnings("unchecked")
 	public void run(){  
 		try 
 		{ 	

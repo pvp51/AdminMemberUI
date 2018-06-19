@@ -23,7 +23,7 @@ public class DataAccessObject {
 		ResultSet rs;
 		switch(records.get(0).getMessage()) {
 		case "login" :
-			ps=conn.prepareStatement("SELECT id, type From records WHERE userName=? AND password=?");
+			ps=conn.prepareStatement("SELECT * From records WHERE userName=? AND password=?");
 			ps.setString(1, this.records.get(0).getUserName());
 			ps.setString(2, this.records.get(0).getPassword());
 
@@ -32,7 +32,13 @@ public class DataAccessObject {
 			if(rs.next()) {
 				this.records.get(0).setId(rs.getInt("id"));
 				this.records.get(0).setType(rs.getString("type"));
-				this.records.get(0).setMessage("success");
+				//this.records.get(0).setMessage("success");
+				this.records.get(0).setEmail(rs.getString("email"));
+				this.records.get(0).setFullName(rs.getString("fullName"));
+				this.records.get(0).setGender(rs.getString("gender"));
+				this.records.get(0).setPassword(rs.getString("password"));
+				this.records.get(0).setUserName(rs.getString("userName"));
+				this.records.get(0).setPhoneNumber(rs.getString("phoneNumber"));
 			}
 			else {
 				System.out.println("Not Exists in DB");
@@ -42,6 +48,45 @@ public class DataAccessObject {
 
 			ps.close();
 			rs.close();
+			DBUtil.dbDisconnect();
+			break; 
+		case "insert" :
+			ps=conn.prepareStatement("INSERT INTO records (userName, password, fullName, email, phoneNumber, gender, type) VALUES (?, ?, ?, ?, ?, ?, ?)");
+			ps.setString(1, this.records.get(0).getUserName());
+			ps.setString(2, this.records.get(0).getPassword());
+			ps.setString(3, this.records.get(0).getFullName());
+			ps.setString(4, this.records.get(0).getEmail());
+			ps.setString(5, this.records.get(0).getPhoneNumber());
+			ps.setString(6, this.records.get(0).getGender());
+			ps.setString(7, this.records.get(0).getType());
+
+			int rs2 = ps.executeUpdate();
+			if(rs2!=0) {
+				System.out.println("Number of rows inserted:"+ rs2);
+			}else {
+				System.out.println("Number of rows inserted:"+ rs2 +"Please try again");
+			}
+			ps.close();
+			DBUtil.dbDisconnect();
+			break; 
+		case "update" :
+			ps=conn.prepareStatement("UPDATE records SET userName =?, password =?, fullName =?, email =?, phoneNumber =?, gender =?, type =? WHERE id =?");
+			ps.setString(1, this.records.get(0).getUserName());
+			ps.setString(2, this.records.get(0).getPassword());
+			ps.setString(3, this.records.get(0).getFullName());
+			ps.setString(4, this.records.get(0).getEmail());
+			ps.setString(5, this.records.get(0).getPhoneNumber());
+			ps.setString(6, this.records.get(0).getGender());
+			ps.setString(7, this.records.get(0).getType());
+			ps.setInt(8, this.records.get(0).getId());
+
+			int rs3 = ps.executeUpdate();
+			if(rs3!=0) {
+				System.out.println("Number of rows updated:"+ rs3);
+			}else {
+				System.out.println("Number of rows updated:"+ rs3 +"Please try again");
+			}
+			ps.close();
 			DBUtil.dbDisconnect();
 			break; 
 		case "delete" :

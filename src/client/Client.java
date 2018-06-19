@@ -12,7 +12,6 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import model.DataObject;
 import model.Record;
 
 public class Client extends Application{
@@ -23,6 +22,7 @@ public class Client extends Application{
 			launch(arg);
 	}
 	
+	@SuppressWarnings("unchecked")
 	public ArrayList<Record> startClient(ArrayList<Record> records) {
 		Socket socketToServer = null;
 		ObjectOutputStream outToServer = null;

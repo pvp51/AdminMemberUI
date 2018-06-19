@@ -11,24 +11,23 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <TableView layoutY="14.0" prefHeight="261.0" prefWidth="437.0" AnchorPane.bottomAnchor="137.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TableView fx:id="recordTable" layoutY="61.0" prefHeight="337.0" prefWidth="437.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="61.0">
                     <columns>
-                        <TableColumn prefWidth="32.0" text="ID" />
-                        <TableColumn prefWidth="113.0" text="Full Name" />
-                      <TableColumn prefWidth="101.0" text="Email" />
-                      <TableColumn prefWidth="89.0" text="Phone Number" />
-                        <TableColumn prefWidth="55.0" text="Gender" />
-                        <TableColumn prefWidth="46.0" text="Type" />
+                        <TableColumn fx:id="idColumn" prefWidth="32.0" text="ID" />
+                        <TableColumn fx:id="fullNameColumn" prefWidth="113.0" text="Full Name" />
+                      <TableColumn fx:id="emailColumn" prefWidth="101.0" text="Email" />
+                      <TableColumn fx:id="phoneNumberColumn" prefWidth="89.0" text="Phone Number" />
+                        <TableColumn fx:id="genderColumn" prefWidth="55.0" text="Gender" />
+                        <TableColumn fx:id="typeColumn" prefWidth="46.0" text="Type" />
                     </columns>
                   </TableView>
-                  <TextField layoutX="40.0" layoutY="311.0" />
-                  <Button layoutX="268.0" layoutY="311.0" mnemonicParsing="false" text="Search" />
-                  <Label layoutX="40.0" layoutY="277.0" text="Full Name:" />
+                  <TextField fx:id="filterField" layoutX="156.0" layoutY="18.0" />
+                  <Label layoutX="86.0" layoutY="22.0" text="Filter Table:" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="287.0">
                <children>
-                  <GridPane layoutX="14.0" layoutY="47.0" prefHeight="251.0" prefWidth="234.0">
+                  <GridPane layoutX="14.0" layoutY="61.0" prefHeight="268.0" prefWidth="234.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -43,7 +42,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <TextField GridPane.columnIndex="1" />
+                        <TextField fx:id="userName" GridPane.columnIndex="1" />
                         <Label text="User Name" />
                         <Label text="Password" GridPane.rowIndex="1" />
                         <Label text="Full Name" GridPane.rowIndex="2" />
@@ -51,19 +50,19 @@
                         <Label text="Phone Number" GridPane.rowIndex="4" />
                         <Label text="Gender" GridPane.rowIndex="5" />
                         <Label text="Type" GridPane.rowIndex="6" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <TextField fx:id="password" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="fullName" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="email" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <TextField fx:id="phoneNumber" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <TextField fx:id="gender" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <TextField fx:id="type" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                      </children>
                   </GridPane>
                   <Label layoutX="323.0" layoutY="20.0" text="Overview" />
                   <Button layoutX="274.0" layoutY="331.0" mnemonicParsing="false" text="New" />
                   <Button layoutX="348.0" layoutY="331.0" mnemonicParsing="false" text="Edit" />
-                  <Button layoutX="104.0" layoutY="331.0" mnemonicParsing="false" text="Submit" />
-                  <Label layoutX="52.0" layoutY="20.0" text="Personal Info" />
+                  <Button fx:id="submitButton" layoutX="104.0" layoutY="344.0" mnemonicParsing="false" onAction="#submitChanges" text="Submit" />
+                  <Label layoutX="93.0" layoutY="20.0" prefHeight="25.0" prefWidth="70.0" text="Personal Info" />
                </children>
             </AnchorPane>
         </items>

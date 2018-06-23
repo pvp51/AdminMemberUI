@@ -32,7 +32,6 @@ public class DataAccessObject {
 			if(rs.next()) {
 				this.records.get(0).setId(rs.getInt("id"));
 				this.records.get(0).setType(rs.getString("type"));
-				//this.records.get(0).setMessage("success");
 				this.records.get(0).setEmail(rs.getString("email"));
 				this.records.get(0).setFullName(rs.getString("fullName"));
 				this.records.get(0).setGender(rs.getString("gender"));
@@ -42,7 +41,6 @@ public class DataAccessObject {
 			}
 			else {
 				System.out.println("Not Exists in DB");
-				//this.records.get(0).setMessage("failed");
 				this.records = new ArrayList<>();
 			}
 
@@ -64,7 +62,7 @@ public class DataAccessObject {
 			if(rs2!=0) {
 				System.out.println("Number of rows inserted:"+ rs2);
 			}else {
-				System.out.println("Number of rows inserted:"+ rs2 +"Please try again");
+				System.out.println("Number of rows inserted:"+ rs2 +". Try again");
 			}
 			ps.close();
 			DBUtil.dbDisconnect();
@@ -84,7 +82,7 @@ public class DataAccessObject {
 			if(rs3!=0) {
 				System.out.println("Number of rows updated:"+ rs3);
 			}else {
-				System.out.println("Number of rows updated:"+ rs3 +"Please try again");
+				System.out.println("Number of rows updated:"+ rs3 +". Try again");
 			}
 			ps.close();
 			DBUtil.dbDisconnect();
@@ -101,7 +99,6 @@ public class DataAccessObject {
 			}
 			else {
 				System.out.println("Not rows found in DB");
-				//this.records.get(0).setMessage("failed");
 				this.records = new ArrayList<>();
 			}
 
@@ -132,7 +129,7 @@ public class DataAccessObject {
 			DBUtil.dbDisconnect();
 			break; 
 		default : 
-			System.out.println("Action Code Does not match");
+			System.out.println("Message/Code is not valid");
 		}
 
 		return this.records;

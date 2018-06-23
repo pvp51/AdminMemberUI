@@ -5,7 +5,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.ResourceBundle;
+
+import com.textmagic.sdk.RestClient;
+import com.textmagic.sdk.RestException;
+import com.textmagic.sdk.resource.instance.TMNewMessage;
 
 import client.Client;
 import javafx.event.ActionEvent;
@@ -53,6 +58,7 @@ public class LoginController implements Initializable{
 		this.primaryStage = (Stage) loginButton.getScene().getWindow();
 
 		if(checkCredentials()){
+			sendSMS();
 			initRootLayout();
 			if("Member".equalsIgnoreCase(group.getSelectedToggle().getUserData().toString())) {
 				showMemberScene();
@@ -140,5 +146,20 @@ public class LoginController implements Initializable{
 		admin.setToggleGroup(group); 
 		admin.setUserData("Admin");
 
+	}
+	private void sendSMS(){
+		Record localRecord = records.get(0);
+		RestClient client = new RestClient("parthpatel1", "BR5J0Kb8nJqFmlCdQ1W4MWEyl7Ek8t");
+		 
+	    TMNewMessage m = client.getResource(TMNewMessage.class);
+	    m.setText("A log in action has been performed on the email "+ localRecord.getEmail() + " on AdminMember App. If this is not you, please contact Admin: Parth Patel");
+	    m.setPhones(Arrays.asList(new String[] {org.apache.commons.lang.StringUtils.leftPad(localRecord.getPhoneNumber(), 11, "1")}));
+	    try {
+	      m.send();
+	    } catch (final RestException e) {
+	      System.out.println("Error Found: "+e.getErrors());
+	      throw new RuntimeException(e);
+	    }
+	    System.out.println("Message id: "+m.getId());
 	}
 }

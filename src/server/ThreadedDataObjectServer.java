@@ -48,13 +48,13 @@ class ThreadedDataObjectHandler extends Thread
 			ObjectOutputStream out = new ObjectOutputStream(incoming.getOutputStream());
 
 			records = (ArrayList<Record>) in.readObject();
-			System.out.println("Message read: " + records.size());
+			System.out.println("Server, Message In: " + records.size());
 
 			DataAccessObject doa = new DataAccessObject(records);
 			records = new ArrayList<>();
 			records = doa.buildQuery();	
 
-			System.out.println("Message written: " + records.size());
+			System.out.println("Server, Message Out: " + records.size());
 			out.writeObject(records);
 
 			in.close();			

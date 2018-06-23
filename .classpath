@@ -4,5 +4,14 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="lib" path="F:/Git projects/AdminMemberUI/javafx-dialogs-0.0.4.jar"/>
 	<classpathentry kind="lib" path="F:/Git projects/AdminMemberUI/mysql-connector.jar"/>
+	<classpathentry kind="lib" path="F:/Git projects/AdminMemberUI/commons-codec-1.4.jar"/>
+	<classpathentry kind="lib" path="F:/Git projects/AdminMemberUI/commons-lang-2.6.jar"/>
+	<classpathentry kind="lib" path="F:/Git projects/AdminMemberUI/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="F:/Git projects/AdminMemberUI/httpclient-4.1.2.jar"/>
+	<classpathentry kind="lib" path="F:/Git projects/AdminMemberUI/httpcore-4.1.2.jar"/>
+	<classpathentry kind="lib" path="F:/Git projects/AdminMemberUI/jackson-core-asl-1.9.3.jar"/>
+	<classpathentry kind="lib" path="F:/Git projects/AdminMemberUI/jackson-mapper-asl-1.9.3.jar"/>
+	<classpathentry kind="lib" path="F:/Git projects/AdminMemberUI/json-simple-1.1.jar"/>
+	<classpathentry kind="lib" path="F:/Git projects/AdminMemberUI/textmagic-java-sdk-1.2.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

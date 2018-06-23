@@ -7,8 +7,13 @@ import java.net.Socket;
 import java.util.ArrayList;
 
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -19,9 +24,9 @@ public class Client extends Application{
 	private BorderPane rootLayout;
 
 	public static void main(String[] arg){
-			launch(arg);
+		launch(arg);
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public ArrayList<Record> startClient(ArrayList<Record> records) {
 		Socket socketToServer = null;
@@ -39,8 +44,8 @@ public class Client extends Application{
 			inFromServer.close(); 
 			socketToServer.close();
 		} catch (ClassNotFoundException | IOException e) {
-			
-			System.out.println("Server Connection is closed now. Thank you :)" );
+
+			System.out.println("Server Connection is closed." );
 		}
 
 		return records;
@@ -82,6 +87,26 @@ public class Client extends Application{
 			// Exception gets thrown if the fxml file could not be loaded
 			e.printStackTrace();
 		}
+	}
+
+	@FXML
+	private void logOut() throws Exception {
+		this.primaryStage = new Stage();
+		start(this.primaryStage);
+	}
+
+	@FXML
+	private void close() throws Exception {
+		Platform.exit();
+	}
+
+	@FXML
+	private void handleAbout() {
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setContentText("Author: Parth Patel");
+		alert.setTitle("About");
+		alert.setHeaderText("CS602App");
+		alert.show();
 	}
 	/*
 	 * Returns the main stage.

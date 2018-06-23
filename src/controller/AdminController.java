@@ -175,6 +175,18 @@ public class AdminController implements Initializable{
 		gender.setText("");
 		type.setText("");
 	}
+	
+	/**
+     * Opens an about dialog.
+     */
+    @FXML
+    private void handleAbout() {
+    	Alert alert = new Alert(AlertType.INFORMATION);
+    	alert.setContentText("Author: Parth Patel");
+    	alert.setTitle("About");
+    	alert.setHeaderText("CS602App");
+    	alert.show();
+    }
 
 	private void showRecords(Record newValue) {
 		if(newValue!= null){

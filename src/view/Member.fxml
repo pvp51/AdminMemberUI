@@ -22,7 +22,7 @@
                     </columns>
                   </TableView>
                   <TextField fx:id="filterField" layoutX="156.0" layoutY="18.0" />
-                  <Label layoutX="86.0" layoutY="22.0" text="Filter Table:" />
+                  <Label layoutX="58.0" layoutY="22.0" prefHeight="17.0" prefWidth="71.0" text="Filter Table:" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="287.0">
@@ -62,7 +62,7 @@
                   <Button layoutX="274.0" layoutY="331.0" mnemonicParsing="false" text="New" />
                   <Button layoutX="348.0" layoutY="331.0" mnemonicParsing="false" text="Edit" />
                   <Button fx:id="submitButton" layoutX="104.0" layoutY="344.0" mnemonicParsing="false" onAction="#submitChanges" text="Submit" />
-                  <Label layoutX="93.0" layoutY="20.0" prefHeight="25.0" prefWidth="70.0" text="Personal Info" />
+                  <Label layoutX="46.0" layoutY="20.0" prefHeight="25.0" prefWidth="81.0" text="Personal Info" />
                </children>
             </AnchorPane>
         </items>
